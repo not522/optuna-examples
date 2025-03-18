@@ -7,6 +7,7 @@ on:
     paths:
       - 'pytorch/**'
       - '.github/workflows/pytorch.yml'
+  workflow_dispatch:
 
 jobs:
   examples:
@@ -75,5 +76,10 @@ jobs:
       run: |
         python pytorch/pytorch_lightning_ddp.py
         python pytorch/pytorch_lightning_ddp.py -p
+      env:
+        OMP_NUM_THREADS: 1
+    - name: Run skorch examples
+      run: |
+        python pytorch/skorch_simple.py
       env:
         OMP_NUM_THREADS: 1
